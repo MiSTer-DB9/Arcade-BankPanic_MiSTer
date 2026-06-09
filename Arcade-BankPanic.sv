@@ -335,12 +335,12 @@ wire [15:0] joy1_USB;
 //   [6]=Fire3<-C(6); [7]=P1/select<-Start(10); [8]=Coin1<-Z(9).
 //   Coin2/Service/KW have no DB9 source -> 0 (keyboard only).
 wire [15:0] joy0 = joydb_1ena ? (OSD_STATUS ? 16'b0
-                              : {7'b0, joydb_1[9], joydb_1[10], joydb_1[6:4], joydb_1[3:0]})
+                              : joydb_1_mapped[8:0])
                               : joy0_USB;
 // REMAP (P2): [3:0]=dirs; [4]=push1<-A(4); [5]=push2<-B(5);
 //   [6]=push3<-C(6); [7]=P2/select<-Start(10).
 wire [15:0] joy1 = joydb_2ena ? (OSD_STATUS ? 16'b0
-                              : {8'b0, joydb_2[10], joydb_2[6:4], joydb_2[3:0]})
+                              : joydb_2_mapped[7:0])
                               : joydb_1ena ? joy0_USB : joy1_USB;
 // [MiSTer-DB9-Pro END]
 
